@@ -1,0 +1,406 @@
+
+
+
+
+
+
+    <style>
+    .responsible-text {
+        position: absolute;
+        bottom: 6px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        text-align: start;
+        font-size: 0.6vw;
+        color: rgba(255, 255, 255, 0.9);
+        border-radius: 6px;
+        padding: 3px 8px;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+    }
+    .slider-container-promo-thumbnail {
+        position: relative;
+        overflow: hidden;
+        width: 102%;
+        display: flex;
+        flex-wrap: wrap;
+        /* Ensure the cards wrap to the next row */
+        scroll-behavior: smooth;
+        /* Ensure smooth scrolling */
+        padding-bottom: 10px;
+        gap: 1rem;
+    }
+
+    .slider-promo-thumbnail {
+        display: flex;
+        flex-wrap: wrap;
+        /* Allow cards to wrap within the container */
+        transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        /* Smoother transition */
+        gap: 1.2rem;
+        width: 100%;
+        /* Ensure the entire width is used */
+    }
+
+    .arrow {
+        position: absolute;
+        top: 50%;
+        z-index: 50;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.349);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .arrow:hover {
+        background-color: #17b8f850;
+    }
+
+    .left-arrow {
+        left: 10px;
+    }
+
+    .right-arrow {
+        right: 10px;
+    }
+
+    .card {
+        position: relative;
+        /* border-radius: 10px; */
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        /* Add some spacing below each card */
+    }
+
+    .card img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    #navigate-right {
+        margin-left: 0.25rem;
+        height: 1.5rem;
+    }
+
+    #navigate-left {
+        margin-trim: 0.25rem;
+        height: 1.5rem;
+    }
+
+    .card-button {
+        position: absolute;
+        top: 72%;
+        /* Position the button near the bottom of the card */
+        left: 16%;
+        transform: translateX(-50%);
+        background-color: #1c7293;
+        color: white;
+        border: none;
+        width: 6vw;
+        height: 1.9vw;
+        border-radius: 30px;
+        cursor: pointer;
+        text-transform: uppercase;
+        box-shadow: 0 0 15px rgba(23, 184, 248, 0.2);
+        border: #17b8f8 1px solid;
+        font-size: 0.6vw;
+        font-weight: 900;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-button:hover {
+        background-color: #17b8f8;
+        box-shadow: 0 0 20px rgba(23, 184, 248, 0.5);
+    }
+
+    .filter-buttons {
+
+        gap: 10px;
+        display: flex;
+        justify-content: start;
+    }
+
+    .filter-btn {
+        font-size: 15px;
+        font-weight: 100;
+        padding: 0px 0px;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 500px;
+        transition: 0.3s;
+        background: #f5deb300;
+
+    }
+
+    /* Default button style */
+    .filter-btn {
+        color: rgba(255, 255, 255, 0.422);
+        border: none;
+        padding: 10px 0px;
+        padding-left: 25px;
+        cursor: pointer;
+        transition: border 0.3s ease;
+        font-weight: 100;
+    }
+
+    /* Hover effect - keeps the original hover effect */
+    .filter-btn:hover {
+
+        color: #17b8f8;
+    }
+
+    /* Active/selected button effect - adds a white outline instead of changing the background */
+    .filter-btn.selected {
+        /* Keep the same background color */
+        color: #ffffff;
+
+        /* White outline when selected */
+    }
+
+    .slider-container-promo-thumbnail {
+        display: flex;
+        min-height: 700px;
+
+        flex-wrap: wrap;
+        align-content: start;
+        justify-content: start;
+        flex-direction: row;
+    }
+
+    .card {
+        transition: 0.3s;
+        position: relative;
+        flex: 0 0 32%;
+        background-color: rgba(83, 59, 59, 0);
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        margin: 0px
+    }
+
+
+    .card img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+
+    /* Hide non-selected promotions */
+    .card.hidden {
+        display: none;
+        transition: 0.3s;
+    }
+
+    @media screen and (max-width: 768px) {
+
+  .responsible-text {
+        position: absolute;
+        bottom: 6px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        text-align: start;
+        font-size: 1.5vw;
+        color: rgba(255, 255, 255, 0.9);
+        border-radius: 6px;
+        padding: 3px 8px;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+    }
+
+
+        .card {
+            flex: 0 0 32%;
+
+            position: relative;
+            flex: auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .slider-promo-thumbnail {
+            gap: 0.5rem;
+        }
+
+        .card-button {
+            position: absolute;
+            top: 71%;
+            left: 18.5%;
+            transform: translateX(-50%);
+            background-color: #1c7293;
+            color: white;
+            border: none;
+            width: 25vw;
+            height: 7.3vw;
+            border-radius: 30px;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(23, 184, 248, 0.2);
+            border: #17b8f8 1px solid;
+            font-size: 2.6vw;
+            font-weight: 900;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .slider-container-promo-thumbnail {
+            width: 100%;
+        }
+    }
+</style>
+
+
+<div style="min-height: 700px;" class="slider-container-promo-thumbnail">
+
+<div class="card" data-category="sports">
+<img src="https://highbet-18764172.springbuilder.site/fs/userFiles-v2/highbet-18764172/media/sport-welcome-offer---thumbnails-cards-17858410137611.jpg?1785841102429" alt="SPORTS WELCOME OFFER"/>
+<a href="https://ios.highbet.co.uk/promotions/sports-welcome-offer"><button class="card-button">CLAIM HERE</button></a>
+</div>
+
+<div class="card" data-category="casino">
+<img src="https://highbet-18764172.springbuilder.site/fs/userFiles-v2/highbet-18764172/media/casino-welcome-offer---thumbnails-cards-1785841855098.jpg?1785841989427" alt="Casino Welcome offer"/>
+<a href="https://ios.highbet.co.uk/promotions/casino-welcome-offer"><button class="card-button">Claim HERE</button></a>
+    </div>
+  
+  <!--
+  <div class="card" data-category="casino">
+        <img src="https://highbet-18764172.springbuilder.site/fs/userFiles-v2/highbet-18764172/media/casino-cashback-thumbnails-cards-n-26-17875632203836.jpg?1788174985137" alt="Sports Cashback Offer" loading="lazy" width="321" height="153">
+        <a href="https://ios.highbet.co.uk/promotions/mid-week-cashback"><button class="card-button">LEARN MORE</button></a>
+    <div class="responsible-text">18+ | Please gamble responsibly. BeGambleAware.org. T&amp;Cs apply</div></div> -->
+  
+  
+<div class="card" data-category="sports">
+<img src="https://highbet-18764172.springbuilder.site/fs/userFiles-v2/highbet-18764172/media/fantasy-premier-league---thumbnails-cards-2-1-17855030436927.jpg?1785844308848" alt="Fanatsy Premier League"/>
+<a href="https://ios.highbet.co.uk/promotions/highbet-fantasy-league"><button class="card-button">JOIN HERE</button></a>
+      </div>
+
+<div class="card" data-category="sports">
+<img src="https://highbet-18764172.springbuilder.site/fs/userFiles-v2/highbet-18764172/media/happy-monday-bonus---thumbnail-card-17854133287522.jpg?1785413552202" alt="happy monday"/>
+<a href="https://ios.highbet.co.uk/promotions/sports-club-rewards"><button class="card-button">LEARN MORE</button></a>
+    </div>
+  
+<div class="card" data-category="casino">
+<img src="https://highbet-18764172.springbuilder.site/fs/userFiles-v2/highbet-18764172/media/casino-cashback-2---thumbnails-cards-17809049997914.jpg?1780904999932" alt="casino weekend cashback"/>
+<a href="https://ios.highbet.co.uk/promotions/casino-cashback-weekend"><button class="card-button">Claim Here</button></a>
+    </div>
+  
+  <div class="card" data-category="casino">
+<img src="https://highbet-clone-18769529.springbuilder.site/fs/userFiles-v2/highbet-clone-18769529/media/drop-and-wins-mar-thumb-26-17744270148672.png?1774427029606" alt="drop and wins"/>
+<a href="https://ios.highbet.co.uk/promotions/drops-wins-2026"><button class="card-button">CLAIM HERE</button></a>
+</div>
+  
+
+
+<div class="card" data-category="greyhound">
+<img src="https://highbet-clone-android-18769591.springbuilder.site/fs/userFiles-v2/highbet-clone-android-18769591/media/greyhound---mobile-banner-22-1-1-17905890596199.jpg?1790589062578" alt="ACCA Mega Boost"/>
+<a href="https://ios.highbet.co.uk/promotions/greyhounds-offer"><button class="card-button">Learn More</button></a>
+    </div>
+
+
+
+
+<div class="card" data-category="sport">
+<img src="https://highbet-18764172.springbuilder.site/fs/userFiles-v2/highbet-18764172/media/acca---thumbnail-card-17845552171616.jpg?1784555218310" alt="ACCA Mega Boost"/>
+<a href="https://ios.highbet.co.uk/promotions/sports-acca-boost"><button class="card-button">Learn More</button></a>
+    </div>
+
+<div class="card" data-category="sports">
+<img src="https://highbet-18764172.springbuilder.site/fs/userFiles-v2/highbet-18764172/media/football-early-payout---thumbnails-cards-17809051433758.jpg?1780905142525" alt="goals ahead"/>
+<a href="https://ios.highbet.co.uk/promotions/goals-ahead"><button class="card-button">CLAIM HERE</button></a>
+</div>
+
+<div class="card" data-category="sports">
+<img src="https://highbet-18764172.springbuilder.site/fs/userFiles-v2/highbet-18764172/media/bet-builder---thumbnails-desktop-text-1743090108828.jpg?1784553609706" alt="bet builder"/>
+<a href="https://ios.highbet.co.uk/promotions/highbet-bet-builder"><button class="card-button">LEARN MORE</button></a>
+</div>
+
+<div class="card" data-category="sports">
+<img src="https://highbet-18764172.springbuilder.site/fs/userFiles-v2/highbet-18764172/media/boosted-odds---thumbnail-card-17809058723587.jpg?1780905872249" alt=" sport weekly cashback"/>
+<a href="https://ios.highbet.co.uk/promotions/boosted-odds"><button class="card-button">CLAIM HERE</button></a>
+</div>
+
+<div class="card" data-category="horse">
+<img src="https://highbet-18764172.springbuilder.site/fs/userFiles-v2/highbet-18764172/media/non-runner-money-back---thumbnails-cards-17809059293152.jpg?1780905928676" alt="Non-runner-money-back"/>
+<a href="https://ios.highbet.co.uk/promotions/non-runner-money-back"><button class="card-button">LEARN MORE</button></a>
+</div>
+
+<div class="card" data-category="horse">
+ <img src="https://highbet-18764172.springbuilder.site/fs/userFiles-v2/highbet-18764172/media/first-past-the-post---thumbnails-cards-17809059836631.jpg?1780905983073" alt="First-past-the-post "/>
+<a href="https://ios.highbet.co.uk/promotions/first-past-the-post"><button class="card-button">LEARN MORE</button></a>
+    </div>
+
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const allButton = document.querySelector(".filter-btn:nth-child(1)");
+        filterPromotions("all", allButton);
+    });
+    (function () {
+        const allButton = document.querySelector(".filter-btn:nth-child(1)");
+        filterPromotions("all", allButton);
+    })();
+
+    function filterPromotions(category, btn) {
+        const cards = document.querySelectorAll(".card");
+        const filterButtons = document.querySelectorAll(".filter-btn");
+
+        // Highlight selected button
+        filterButtons.forEach(button => button.classList.remove("selected"));
+        btn.classList.add("selected");
+
+        cards.forEach(card => {
+            const categories = card.getAttribute("data-category").split(" ");
+            // Split categories into array
+
+            if (category === "all" || categories.includes(category)) {
+                card.classList.remove("hidden");
+            } else {
+                card.classList.add("hidden");
+            }
+        });
+    }
+    window.filterPromotions = filterPromotions;
+</script>
+
+<!-- ✅ Script to auto-insert disclaimer on all cards -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const cards = document.querySelectorAll(".card");
+        cards.forEach(card => {
+            if (!card.querySelector(".responsible-text")) {
+                const disclaimer = document.createElement("div");
+                disclaimer.classList.add("responsible-text");
+                disclaimer.innerText = "18+ | Please gamble responsibly. BeGambleAware.org. T&Cs apply";
+                card.appendChild(disclaimer);
+            }
+        });
+    });
+    (function () {
+        const cards = document.querySelectorAll(".card");
+        cards.forEach(card => {
+            if (!card.querySelector(".responsible-text")) {
+                const disclaimer = document.createElement("div");
+                disclaimer.classList.add("responsible-text");
+                disclaimer.innerText = "18+ | Please gamble responsibly. BeGambleAware.org. T&Cs apply";
+                card.appendChild(disclaimer);
+            }
+        });
+    })();
+</script>
