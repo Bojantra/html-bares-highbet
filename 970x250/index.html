@@ -4,7 +4,15 @@
 <meta charset="utf-8">
 <meta name="ad.size" content="width=970,height=250">
 <title>HighBet Big Bass Splash 970x250</title>
-<script>var clickTag = "https://www.highbet.com";</script>
+<script>
+// Click-through: the ad platform passes the destination as ?clickTag=...; the URL below is the fallback.
+var clickTag = "https://www.highbet.com";
+document.addEventListener('DOMContentLoaded', function () {
+  var url = new URLSearchParams(location.search).get('clickTag');
+  if (url && /^(https?:)?\/\//i.test(url)) clickTag = url;
+  document.getElementById('ad').href = clickTag;
+});
+</script>
 <style>
 @font-face{font-family:'Zalando Sans Expanded';src:url(zalando-exp-black.woff2) format('woff2');font-weight:900;font-display:block}
 @font-face{font-family:'Zalando Sans';src:url(zalando-medium.woff2) format('woff2');font-weight:500;font-display:block}
@@ -100,7 +108,7 @@ html,body{overflow:hidden;background:transparent}
     <div class="copy">
       <div class="s1"><span class="ln big" style="font-size:44px;--d:2.20s"><span>Get up to</span></span><span class="ln big" style="font-size:44px;--d:2.32s"><span><b class="c">300 cash spins</b></span></span></div>
       <div class="s2"><span class="ln big" style="font-size:44px;--d:4.65s"><span>On <b class="c">Big Bass</b></span></span><span class="ln big" style="font-size:44px;--d:4.77s"><span>Splash</span></span><div class="fish"><img src="fish.webp" alt=""></div></div>
-      <div class="s3"><span class="ln c big" style="font-size:50px;--d:7.15s"><span>Aim high.</span></span><span class="ln big" style="font-size:34px;--d:7.27s"><span>Join HighBet</span></span></div>
+      <div class="s3"><span class="ln c big" style="font-size:50px;--d:7.15s"><span>Aim high</span></span><span class="ln big" style="font-size:34px;--d:7.27s"><span>Join HighBet</span></span></div>
     </div>
     <div class="btn">Claim offer</div>
   </div>

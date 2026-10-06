@@ -4,7 +4,15 @@
 <meta charset="utf-8">
 <meta name="ad.size" content="width=160,height=600">
 <title>HighBet Big Bass Splash 160x600</title>
-<script>var clickTag = "https://www.highbet.com";</script>
+<script>
+// Click-through: the ad platform passes the destination as ?clickTag=...; the URL below is the fallback.
+var clickTag = "https://www.highbet.com";
+document.addEventListener('DOMContentLoaded', function () {
+  var url = new URLSearchParams(location.search).get('clickTag');
+  if (url && /^(https?:)?\/\//i.test(url)) clickTag = url;
+  document.getElementById('ad').href = clickTag;
+});
+</script>
 <style>
 :root{--navy:#001841;--navy-2:#01346B;--cyan:#3ED7FE;--cyan-2:#1FB4F5}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -12,7 +20,7 @@ html,body{overflow:hidden;background:transparent}
 #ad{position:relative;display:block;width:160px;height:600px;overflow:hidden;background:radial-gradient(circle at 50% 28%,#1670C4 0%,#06306E 42%,var(--navy) 100%);font-family:'Montserrat',Arial,Helvetica,sans-serif;font-weight:800;color:#fff;text-decoration:none;cursor:pointer;-webkit-font-smoothing:antialiased}
 .panel{position:absolute;z-index:2;background:linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 100%)}
 .intro{position:absolute;left:50%;top:50%;z-index:3;opacity:0;transform:translate(-50%,-50%) scale(0)}
-.cover{position:absolute;inset:0;z-index:3;background:linear-gradient(#0d3d70 0%,#0b2d59 45%,#0b2d59 100%)}
+.cover{position:absolute;inset:0;z-index:3;background:radial-gradient(#1670C4 0%,#0B4A9A 45%,#01346B 100%)}
 .intro img,.brand img,.hero img,.fish img{display:block;width:100%;height:auto}
 .brand{position:absolute}
 .hero{position:absolute;z-index:1}
@@ -72,7 +80,7 @@ html,body{overflow:hidden;background:transparent}
 .big,.btn,b{font-weight:900;letter-spacing:0}
 .ln{padding-bottom:0;margin-bottom:0}
 .intro{width:130px}
-.hero{left:-30px;top:20px;width:190px}
+.hero{left:-36px;top:10px;width:200px}
 #ad{background:#00133B url(bg.jpg) 0 0/160px 600px no-repeat}
 .panel{left:0;bottom:0;width:100%;height:328px;background:linear-gradient(180deg,rgba(0,19,59,0) 0%,rgba(0,19,59,.6) 22%,rgba(0,19,59,.25) 100%)}
 .brand{left:16px;top:43px;width:101px}
@@ -81,10 +89,10 @@ html,body{overflow:hidden;background:transparent}
 .tc{left:0;top:575px;width:100%;text-align:center;font-family:'Zalando Sans',Arial,Helvetica,sans-serif;font-weight:500;font-size:8.4px;line-height:8.8px;color:rgba(255,255,255,.92);white-space:nowrap}
 
 /* bubbles: ambient stream + splash when the character lands */
-.bubbles{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bubbles{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
 .bubbles span,.fx span{position:absolute;border-radius:50%;border:1.5px solid rgba(25,199,255,.9);background:radial-gradient(circle at 32% 30%,rgba(255,255,255,.95) 0 14%,rgba(25,199,255,.25) 38%,rgba(25,199,255,.05) 70%);box-shadow:0 0 6px rgba(25,199,255,.45)}
 .bubbles span{bottom:-20px;opacity:0;animation:rise linear infinite}
-.fx{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.fx{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden}
 .fx span{left:0;top:0}
 .done .bubbles{opacity:0}
 .done .hero img{animation-play-state:paused}
